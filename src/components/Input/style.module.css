@@ -1,0 +1,10 @@
+.input {
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: solid 1px var(--lightgray);
+  outline: transparent;
+}
+
+.input:focus {
+  border: solid 1px var(--primary) !important;
+}
