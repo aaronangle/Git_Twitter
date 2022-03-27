@@ -1,0 +1,16 @@
+.side {
+  height: 100vh;
+  min-width: 50vw;
+  background-color: var(--primary);
+}
+
+.flexRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.center {
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,56 @@
+.nav-container {
+  background-color: var(--white);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px;
+  border-radius: 99999px;
+  width: auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.link:hover {
+  background-color: var(--exlightgray);
+}
+
+.link h3 {
+  font-weight: 400;
+  margin: 0 10px;
+}
+
+.selected h3 {
+  font-weight: 700;
+}
+
+.selected svg {
+  font-weight: 600;
+  stroke-width: 0.7px;
+  stroke: #000000;
+  fill: black;
+}
+
+@media only screen and (max-width: 1300px) {
+  .link h3 {
+    display: none;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .nav-container {
+    background-color: var(--white);
+    left: 0;
+    top: unset;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

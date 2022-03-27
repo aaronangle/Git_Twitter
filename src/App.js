@@ -1,14 +1,8 @@
-import { useState } from 'react';
-
+import { Landing } from './pages/Landing/Landing';
 function App() {
-  const [counter, setCounter] = useState(0);
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{counter}</p>
-        <button onClick={() => setCounter(c => c + 1)}>Increment</button>
-      </header>
+      <Landing />
     </div>
   );
 }
