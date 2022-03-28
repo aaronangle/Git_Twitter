@@ -5,6 +5,11 @@
   width: 300px;
 }
 
+h3 {
+  margin-top: 0;
+  padding-left: 15px;
+}
+
 .avatar {
   border-radius: 50%;
   height: 50px;
