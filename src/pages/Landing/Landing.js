@@ -16,7 +16,7 @@ export const Landing = () => {
           <a href="https://aaronangle.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">
             me
           </a>
-          &nbsp;with React, Redux, and CSS modules.
+          &nbsp;with React, Redux, and CSS modules, using GitHub's API
         </p>
         <Link to={'/home'}>
           <Button className={'btn-primary'}>

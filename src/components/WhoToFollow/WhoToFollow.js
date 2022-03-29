@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Spinner } from '../Spinner';
 import styles from './styles.module.css';
 
@@ -7,10 +8,10 @@ export const WhoToFollow = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://randomuser.me/api/?results=5')
+    fetch('https://api.github.com/users?per_page=5')
       .then(res => res.json())
       .then(res => {
-        setUsers(res.results);
+        setUsers(res);
         setLoading(false);
       })
       .catch(err => {
@@ -24,15 +25,15 @@ export const WhoToFollow = () => {
       {loading && <Spinner />}
       {users.map((user, index) => {
         return (
-          <div key={index} className={styles.row}>
-            <img src={user.picture.medium} alt="avatar" className={styles.avatar} />
-            <div className={styles.userDetails}>
-              <h4>
-                {user.name.first} {user.name.last}
-              </h4>
-              <p>@{user.email.split('@')[0]}</p>
+          <Link key={index} to={`/profile/${user.login}`}>
+            <div className={styles.row}>
+              <img src={user.avatar_url} alt="avatar" className={styles.avatar} />
+              <div className={styles.userDetails}>
+                <h4>{user.login}</h4>
+                <p>@{user.login}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

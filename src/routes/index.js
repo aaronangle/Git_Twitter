@@ -25,7 +25,7 @@ export const AppRoutes = () => {
       children: [
         { path: '/home', element: <Home /> },
         { path: '/notifications', element: <Notifications /> },
-        { path: '/profile', element: <Profile /> },
+        { path: '/profile/:username', element: <Profile /> },
         { path: '/Settings', element: <Settings /> },
       ],
     },
