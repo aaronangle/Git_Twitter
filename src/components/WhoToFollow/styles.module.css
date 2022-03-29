@@ -26,8 +26,8 @@ h3 {
   background-color: var(--exlightgray);
 }
 
-.userDetails h4,
-p {
+.userDetails > h4,
+.userDetails > p {
   margin: 0;
 }
 

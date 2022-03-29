@@ -12,7 +12,7 @@ export const Landing = () => {
       <div className={styles.center}>
         <h1>Welcome to Tweeter</h1>
         <p>
-          A Twitter clone built by&nbsp;
+          A Twitter-ish clone for GitHub data &amp; users built by&nbsp;
           <a href="https://aaronangle.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">
             me
           </a>
