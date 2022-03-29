@@ -1,0 +1,49 @@
+.bannerImg {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 40px;
+}
+.profilePic {
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10%;
+  left: 30px;
+  background-color: white;
+  padding: 5px;
+}
+.relative {
+  position: relative;
+}
+.userDetailsCont {
+  padding: 10px 25px 0 25px;
+  border-bottom: solid 1px var(--exlightgray);
+}
+.userDetailsCont > h2 {
+  margin-bottom: 0;
+}
+.flexRow {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.userDetailsCont > p,
+.flexRow > p,
+.flexRow > a {
+  margin: 10px 0;
+  margin-right: 15px;
+}
+.flex {
+  display: flex;
+}
+.flex > svg {
+  margin-right: 3px;
+  fill: var(--gray);
+}
+.muted {
+  color: var(--gray);
+}
+.primary {
+  color: var(--primary);
+}
