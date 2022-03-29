@@ -1,0 +1,38 @@
+.row {
+  display: flex;
+  border-bottom: solid 1px var(--exlightgray);
+  transition: 0.3s;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.row:hover {
+  background-color: var(--light);
+}
+
+.row__badge {
+  background-color: var(--white);
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  border: solid 1px var(--lightgray);
+  padding: 5px;
+  border-radius: 99999px;
+  height: 40px;
+  margin: 5px;
+  min-width: 70px;
+}
+.row__badge--issues {
+  background-color: var(--redbg);
+  border: solid 1px var(--red);
+}
+
+.badge__text {
+  margin: 0;
+}
+
+.badge__count {
+  padding: 5px 10px;
+  background-color: var(--exlightgray);
+  border-radius: 50%;
+  margin-left: 5px;
+}

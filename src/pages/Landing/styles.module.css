@@ -1,3 +1,7 @@
+.cont {
+  display: flex;
+  align-items: center;
+}
 .side {
   height: 100vh;
   min-width: 50vw;
@@ -6,15 +10,12 @@
   justify-content: center;
   align-items: center;
 }
-
-.logoRow,
-.flexRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.side__logo {
+  border-radius: 50%;
+  animation: spin 12s infinite linear;
 }
 
-.center {
+.main {
   width: calc(100% - 60px);
   display: flex;
   flex-direction: column;
@@ -24,13 +25,6 @@
   text-align: center;
 }
 
-.logo {
-  border-radius: 50%;
-  animation: spin 12s infinite linear;
-}
-.white {
-  fill: white;
-}
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -41,14 +35,15 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .logoRow {
+  .cont {
     flex-direction: column-reverse;
   }
   .side {
     height: 300px;
     width: 100vw;
   }
-  .center {
+  .main {
     height: calc(100vh - 300px);
+    min-height: 220px;
   }
 }

@@ -3,16 +3,16 @@ import styles from './styles.module.css';
 import { joinClassNames } from '../../../../utils/joinClassNames';
 import { SelectBar } from '../SelectBar/SelectBar';
 
-export const UserInfo = ({ user }) => {
+export const UserInfo = ({ user, setSelectedView }) => {
   return (
     <>
       <div className={styles.relative}>
-        <img src="https://picsum.photos/950/250" alt="" className={styles.bannerImg} />
+        <img src="https://source.unsplash.com/random/1080x300" alt="" className={styles.bannerImg} />
         <img src={user.avatar_url} alt="" className={styles.profilePic} />
       </div>
       <div className={styles.userDetailsCont}>
         <h2>{user.name}</h2>
-        <div className={styles.muted}>@{user.login}</div>
+        <p className="text--muted m-0">@{user.login}</p>
         <p>{user.bio}</p>
         <div className={styles.flexRow}>
           {user.blog && (
@@ -55,7 +55,7 @@ export const UserInfo = ({ user }) => {
             <b>{user.followers}</b> <span className={styles.muted}>Followers</span>
           </p>
         </div>
-        <SelectBar />
+        <SelectBar setSelectedView={setSelectedView} />
       </div>
     </>
   );

@@ -4,33 +4,17 @@
   background-color: var(--light);
   width: 300px;
 }
-
-h3 {
-  margin-top: 0;
-  padding-left: 15px;
-}
-
-.avatar {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  margin-right: 15px;
-}
-
-.row {
+.card__row {
   display: flex;
   padding: 10px 15px;
   cursor: pointer;
 }
-.row:hover {
+.card__row:hover {
   background-color: var(--exlightgray);
 }
-
-.userDetails > h4,
-.userDetails > p {
-  margin: 0;
-}
-
-.userDetails p {
-  color: var(--gray);
+.card__avatar {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-right: 15px;
 }
