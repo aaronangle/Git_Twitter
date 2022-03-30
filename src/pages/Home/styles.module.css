@@ -1,0 +1,17 @@
+.cont {
+  padding-top: 80px;
+}
+.cont__header {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.row__avatar {
+  height: 60px;
+  border-radius: 50%;
+}

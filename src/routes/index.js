@@ -2,7 +2,7 @@ import { useRoutes, Outlet } from 'react-router-dom';
 
 import { Landing } from '../pages/Landing';
 import { Home } from '../pages/Home';
-import { Notifications } from '../pages/Notifications';
+import { Topics } from '../pages/Topics';
 import { Profile } from '../pages/Profile';
 import { Settings } from '../pages/Settings';
 
@@ -24,7 +24,7 @@ export const AppRoutes = () => {
       element: <App />,
       children: [
         { path: '/home', element: <Home /> },
-        { path: '/notifications', element: <Notifications /> },
+        { path: '/topics', element: <Topics /> },
         { path: '/profile/:username', element: <Profile /> },
         { path: '/Settings', element: <Settings /> },
       ],

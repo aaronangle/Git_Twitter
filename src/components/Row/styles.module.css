@@ -1,0 +1,9 @@
+.row {
+  padding: 10px;
+  border-bottom: solid 1px var(--exlightgray);
+  transition: 0.2s;
+}
+
+.row:hover {
+  background-color: var(--light);
+}
