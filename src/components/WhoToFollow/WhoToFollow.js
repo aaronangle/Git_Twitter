@@ -8,10 +8,11 @@ export const WhoToFollow = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://api.github.com/users?per_page=5')
+    const page = Math.floor(Math.random() * 100);
+    fetch(`https://api.github.com/search/users?q=""&page=${page}&per_page=5`)
       .then(res => res.json())
       .then(res => {
-        setUsers(res);
+        setUsers(res.items);
         setLoading(false);
       })
       .catch(err => {
