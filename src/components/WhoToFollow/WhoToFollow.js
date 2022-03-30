@@ -11,10 +11,9 @@ export const WhoToFollow = () => {
       .then((res) => res.json())
       .then((res) => {
         setUsers(res.items);
-        setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 

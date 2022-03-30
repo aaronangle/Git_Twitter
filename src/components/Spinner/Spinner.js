@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { joinClassNames } from '../../utils/joinClassNames';
+import { joinClassNames } from 'utils/helpers';
 
 export const Spinner = () => {
   return (

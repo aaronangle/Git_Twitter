@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import { joinClassNames } from 'utils/joinClassNames';
+import { joinClassNames } from 'utils/helpers';
 
 export const Repos = ({ username }) => {
   const [repos, setRepos] = useState([]);
@@ -8,11 +8,10 @@ export const Repos = ({ username }) => {
     fetch(`https://api.github.com/users/${username}/repos`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setRepos(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, [username]);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { joinClassNames } from '../../../../utils/joinClassNames';
+import { joinClassNames, pluralizeName } from 'utils/helpers';
 import { SelectBar } from '../SelectBar/SelectBar';
 
 export const UserInfo = ({ user, setSelectedView }) => {
@@ -52,7 +52,7 @@ export const UserInfo = ({ user, setSelectedView }) => {
             <b>{user.following}</b> <span className={styles.muted}>Following</span>
           </p>
           <p className="">
-            <b>{user.followers}</b> <span className={styles.muted}>Followers</span>
+            <b>{user.followers}</b> <span className={styles.muted}>{pluralizeName('Follower', user.followers)}</span>
           </p>
         </div>
         <SelectBar setSelectedView={setSelectedView} />

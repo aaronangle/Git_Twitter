@@ -20,7 +20,7 @@ export const Profile = () => {
         setEvents(res[1]);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, [username]);
 

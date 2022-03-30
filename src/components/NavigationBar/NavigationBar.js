@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
-import { joinClassNames } from '../../utils/joinClassNames';
+import { joinClassNames } from 'utils/helpers';
 
 const navigationItems = [
   {

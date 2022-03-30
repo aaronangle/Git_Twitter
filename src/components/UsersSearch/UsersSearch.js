@@ -7,7 +7,6 @@ export const UsersSearch = () => {
   const [search, setSearch] = useState('');
 
   function searchUser() {
-    console.log('helo');
     navigate(`/profile/${search}`);
   }
 
