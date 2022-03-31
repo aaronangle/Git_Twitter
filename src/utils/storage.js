@@ -1,12 +1,15 @@
 const storage = {
-  getToken: () => {
-    return JSON.parse(window.localStorage.getItem("token"));
+  hasVisitedSite: () => {
+    return JSON.parse(window.localStorage.getItem('hasVisitedSite'));
   },
-  setToken: (token) => {
-    window.localStorage.setItem("token", token);
+  setHasVisitedSite: (value) => {
+    window.localStorage.setItem('hasVisitedSite', value);
   },
-  clearToken: () => {
-    window.localStorage.removeItem("token");
+  getDarkMode: () => {
+    return JSON.parse(window.localStorage.getItem('darkMode'));
+  },
+  setDarkMode: (value) => {
+    window.localStorage.setItem('darkMode', value);
   },
 };
 

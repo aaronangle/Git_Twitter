@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar } from 'components/Avatar';
 import { Link } from 'react-router-dom';
-import styles from './styles.module.css';
+
+import { Avatar } from 'components/Avatar';
+import { Spinner } from 'components/Spinner';
+
 import { axios } from 'lib/axios';
+
+import styles from './styles.module.css';
 
 export const WhoToFollow = () => {
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const page = Math.floor(Math.random() * 100);
-    axios(`/search/users?q=""&page=${page}&per_page=5`)
-      .then((res) => {
-        setUsers(res.items);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    axios(`/search/users?q=""&page=${page}&per_page=5`).then((res) => {
+      setUsers(res.items);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
@@ -34,6 +37,7 @@ export const WhoToFollow = () => {
           </Link>
         );
       })}
+      {isLoading && <Spinner />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ export const UserInfo = ({ user, children }) => {
   return (
     <>
       <div className={styles.relative}>
-        <img src="https://source.unsplash.com/random/1080x300" alt="" className={styles.bannerImg} />
+        <div className={styles.banner}></div>
         <img src={user.avatar_url} alt="" className={styles.profilePic} />
       </div>
       <div className={styles.userDetailsCont}>

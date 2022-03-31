@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { RowContainer } from 'components/RowContainer';
 import { Avatar } from 'components/Avatar';
+import { Spinner } from 'components/Spinner';
 import { Badge } from '../Badge/Badge';
 
 import { axios } from 'lib/axios';
@@ -10,16 +11,20 @@ import styles from './styles.module.css';
 
 export const Starred = ({ username }) => {
   const [starred, setStarred] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    axios(`/users/${username}/starred`)
-      .then((res) => res.json())
-      .then((res) => {
-        setStarred(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    setIsLoading(true);
+    axios(`/users/${username}/starred`).then((res) => {
+      setStarred(res);
+      setIsLoading(false);
+    });
   }, [username]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       {starred.map((repo, index) => {

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './style.module.css';
 import { joinClassNames } from 'utils/helpers';
 
@@ -44,10 +44,15 @@ const navigationItems = [
 ];
 
 export const NavigationBar = () => {
-  const [selected, setSelected] = useState('Home');
+  const [selected, setSelected] = useState('/home');
+  const location = useLocation();
 
-  function isSelected(name) {
-    if (name === selected) return styles['link--selected'];
+  useEffect(() => {
+    setSelected(location.pathname);
+  }, [location]);
+
+  function isSelected(route) {
+    if (route === selected) return styles['link--selected'];
   }
 
   return (
@@ -55,7 +60,7 @@ export const NavigationBar = () => {
       {navigationItems.map((navItem, index) => {
         return (
           <Link key={index} to={navItem.route} className="text--no-underline text--text-color">
-            <div className={joinClassNames(styles.link, isSelected(navItem.name))} onClick={() => setSelected(navItem.name)}>
+            <div className={joinClassNames(styles.link, isSelected(navItem.route))}>
               {navItem.svg}
               <h3 className={styles['link__text']}>{navItem.name}</h3>
             </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { RowContainer } from 'components/RowContainer';
+import { Spinner } from 'components/Spinner';
 import { Badge } from '../Badge/Badge';
 
 import { axios } from 'lib/axios';
@@ -9,16 +10,19 @@ import styles from './styles.module.css';
 
 export const Repos = ({ username }) => {
   const [repos, setRepos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    axios(`/users/${username}/repos`)
-      .then((res) => {
-        setRepos(res);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    setIsLoading(true);
+    axios(`/users/${username}/repos`).then((res) => {
+      setRepos(res);
+      setIsLoading(false);
+    });
   }, [username]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

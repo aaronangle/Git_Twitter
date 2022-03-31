@@ -1,6 +1,8 @@
-.bannerImg {
+.banner {
   width: 100%;
   height: 200px;
+  background-color: var(--primary);
+  background: linear-gradient(45deg, var(--primary), var(--primaryhover));
   margin-bottom: 40px;
   object-fit: cover;
 }
@@ -8,7 +10,7 @@
   height: 150px;
   border-radius: 50%;
   position: absolute;
-  bottom: -10%;
+  bottom: -35%;
   left: 30px;
   background-color: white;
   padding: 5px;

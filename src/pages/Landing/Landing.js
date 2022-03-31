@@ -10,7 +10,7 @@ export const Landing = () => {
         <img src={require('../../assets/reactlogo.png')} alt="" className={styles['side__logo']} />
       </div>
       <div className={styles.main}>
-        <h1 className="mb-0">Welcome to Tweeter</h1>
+        <h1 className="mb-0">Welcome to Git_Tweeter</h1>
         <p>
           A Twitter-ish clone for GitHub data &amp; users built by&nbsp;
           <a href="https://aaronangle.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">

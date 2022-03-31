@@ -1,8 +1,28 @@
+.arrows {
+  position: absolute;
+  z-index: 1;
+  right: 5px;
+  top: -40px;
+  background-color: white;
+  border-radius: 99999px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.13);
+}
+.arrows__arrow {
+  background-color: var(--primary);
+  fill: var(--white);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
 .cont {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   overflow: auto;
+  position: relative;
+  scroll-behavior: smooth;
 }
 
 .box {
@@ -16,9 +36,15 @@
   margin: 5px;
   min-width: 90px;
 }
+.box:hover {
+  background-color: var(--exlightgray);
+}
 .box--selected {
   background-color: var(--primary);
   color: var(--white);
+}
+.box--selected:hover {
+  background-color: var(--primaryhover);
 }
 .box__text {
   margin: 0;
