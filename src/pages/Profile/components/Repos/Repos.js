@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
+
 import { RowContainer } from 'components/RowContainer';
 import { Badge } from '../Badge/Badge';
+
+import { axios } from 'lib/axios';
+
 import styles from './styles.module.css';
 
 export const Repos = ({ username }) => {
   const [repos, setRepos] = useState([]);
   useEffect(() => {
-    fetch(`https://api.github.com/users/${username}/repos`)
-      .then(res => res.json())
-      .then(res => {
+    axios(`/users/${username}/repos`)
+      .then((res) => {
         setRepos(res);
         console.log(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }, [username]);

@@ -7,6 +7,8 @@ import { SelectBar } from './components/SelectBar/SelectBar';
 import { Repos } from './components/Repos/Repos';
 import { Starred } from './components/Starred/Starred';
 
+import { axios } from 'lib/axios';
+
 export const Profile = () => {
   const { username } = useParams();
   const [user, setUser] = useState({});
@@ -14,13 +16,12 @@ export const Profile = () => {
   const [selectedView, setSelectedView] = useState('events');
 
   useEffect(() => {
-    Promise.all([fetch(`https://api.github.com/users/${username}`), fetch(`https://api.github.com/users/${username}/events`)])
-      .then(async res => Promise.all(res.map(r => r.json())))
-      .then(res => {
+    Promise.all([axios(`/users/${username}`), axios(`/users/${username}/events`)])
+      .then((res) => {
         setUser(res[0]);
         setEvents(res[1]);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }, [username]);

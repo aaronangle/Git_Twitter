@@ -5,6 +5,8 @@ import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { TopicSelectionBar } from './components/TopicSelectionBar/TopicSelectionBar';
 
+import { axios } from 'lib/axios';
+
 import styles from './styles.module.css';
 
 export const Topics = () => {
@@ -13,16 +15,11 @@ export const Topics = () => {
 
   useEffect(() => {
     const query = encodeURIComponent(selectedTopics.join(' OR '));
-    fetch(`https://api.github.com/search/topics?q=${query}&per_page=20`, {
-      headers: {
-        Authorization: 'token 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',
-      },
-    })
-      .then(res => res.json())
-      .then(res => {
-        setTopics(res.items.filter(el => el.display_name));
+    axios(`/search/topics?q=${query}&per_page=20`)
+      .then((res) => {
+        setTopics(res.items.filter((el) => el.display_name));
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }, [selectedTopics]);

@@ -6,11 +6,13 @@ import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { EventRow } from 'components/EventRow';
 
+import { axios } from 'lib/axios';
+
 export const Home = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch(`https://api.github.com/events?page=1`)
+    axios(`/events?page=1`)
       .then((res) => res.json())
       .then((res) => {
         setEvents(res);

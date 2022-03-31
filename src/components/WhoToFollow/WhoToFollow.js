@@ -1,19 +1,19 @@
-import { Avatar } from 'components/Avatar';
 import React, { useEffect, useState } from 'react';
+import { Avatar } from 'components/Avatar';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
+import { axios } from 'lib/axios';
 
 export const WhoToFollow = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const page = Math.floor(Math.random() * 100);
-    fetch(`https://api.github.com/search/users?q=""&page=${page}&per_page=5`)
-      .then(res => res.json())
-      .then(res => {
+    axios(`/search/users?q=""&page=${page}&per_page=5`)
+      .then((res) => {
         setUsers(res.items);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }, []);
