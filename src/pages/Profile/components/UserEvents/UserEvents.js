@@ -5,9 +5,9 @@ import { EventRow } from 'components/EventRow';
 export const UserEvents = ({ events }) => {
   return (
     <>
-      {events.map((event) => {
+      {events.map(event => {
         return (
-          <RowContainer>
+          <RowContainer key={event.id}>
             <EventRow event={event} />
           </RowContainer>
         );

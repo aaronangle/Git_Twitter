@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { UserInfo } from './components/UserInfo/UserInfo';
 import { UserEvents } from './components/UserEvents/UserEvents';
 import { UserNotFound } from './components/UserNotFound/UserNotFound';
+import { SelectBar } from './components/SelectBar/SelectBar';
 import { Repos } from './components/Repos/Repos';
 import { Starred } from './components/Starred/Starred';
 
@@ -14,12 +15,12 @@ export const Profile = () => {
 
   useEffect(() => {
     Promise.all([fetch(`https://api.github.com/users/${username}`), fetch(`https://api.github.com/users/${username}/events`)])
-      .then(async (res) => Promise.all(res.map((r) => r.json())))
-      .then((res) => {
+      .then(async res => Promise.all(res.map(r => r.json())))
+      .then(res => {
         setUser(res[0]);
         setEvents(res[1]);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   }, [username]);
@@ -30,7 +31,9 @@ export const Profile = () => {
 
   return (
     <>
-      <UserInfo user={user} setSelectedView={setSelectedView} />
+      <UserInfo user={user}>
+        <SelectBar selectedView={selectedView} setSelectedView={setSelectedView} />
+      </UserInfo>
       {selectedView === 'events' && <UserEvents events={events} />}
       {selectedView === 'repos' && <Repos username={username} />}
       {selectedView === 'starred' && <Starred username={username} />}

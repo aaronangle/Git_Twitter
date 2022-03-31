@@ -2,17 +2,17 @@ import React from 'react';
 import styles from './styles.module.css';
 import { joinClassNames } from 'utils/helpers';
 
-export const SelectBar = ({ user, setSelectedView }) => {
+export const SelectBar = ({ selectedView, setSelectedView }) => {
   return (
     <>
       <div className={styles.row}>
-        <p className={joinClassNames(styles.selected, styles.link)} onClick={() => setSelectedView('events')}>
+        <p className={joinClassNames(styles.link, selectedView == 'events' && styles.selected)} onClick={() => setSelectedView('events')}>
           Events
         </p>
-        <p className={styles.link} onClick={() => setSelectedView('repos')}>
+        <p className={joinClassNames(styles.link, selectedView == 'repos' && styles.selected)} onClick={() => setSelectedView('repos')}>
           Repos
         </p>
-        <p className={styles.link} onClick={() => setSelectedView('starred')}>
+        <p className={joinClassNames(styles.link, selectedView == 'starred' && styles.selected)} onClick={() => setSelectedView('starred')}>
           Starred
         </p>
       </div>

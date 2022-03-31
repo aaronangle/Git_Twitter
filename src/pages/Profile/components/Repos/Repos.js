@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { RowContainer } from 'components/RowContainer';
 import styles from './styles.module.css';
 import { joinClassNames } from 'utils/helpers';
 
@@ -6,11 +7,11 @@ export const Repos = ({ username }) => {
   const [repos, setRepos] = useState([]);
   useEffect(() => {
     fetch(`https://api.github.com/users/${username}/repos`)
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         setRepos(res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   }, [username]);
