@@ -14,15 +14,13 @@ import { axios } from 'lib/axios';
 export const Profile = () => {
   const { username } = useParams();
   const [user, setUser] = useState({});
-  const [events, setEvents] = useState([]);
   const [selectedView, setSelectedView] = useState('events');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    Promise.all([axios(`/users/${username}`), axios(`/users/${username}/events`)]).then((res) => {
-      setUser(res[0]);
-      setEvents(res[1]);
+    axios(`/users/${username}`).then((res) => {
+      setUser(res);
       setIsLoading(false);
     });
   }, [username]);
@@ -40,7 +38,7 @@ export const Profile = () => {
       <UserInfo user={user}>
         <SelectBar selectedView={selectedView} setSelectedView={setSelectedView} />
       </UserInfo>
-      {selectedView === 'events' && <UserEvents events={events} />}
+      {selectedView === 'events' && <UserEvents username={username} />}
       {selectedView === 'repos' && <Repos username={username} />}
       {selectedView === 'starred' && <Starred username={username} />}
     </>

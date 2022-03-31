@@ -56,6 +56,7 @@ export const Starred = ({ username }) => {
           </a>
         );
       })}
+      {!isLoading && <h3 className="text--center">No {starred.length > 0 && 'More'} Starred Repos to Show</h3>}
     </>
   );
 };

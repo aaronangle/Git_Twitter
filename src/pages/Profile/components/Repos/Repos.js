@@ -42,6 +42,7 @@ export const Repos = ({ username }) => {
           </a>
         );
       })}
+      {!isLoading && <h3 className="text--center">No {repos.length > 0 && 'More'} Repos to Show</h3>}
     </>
   );
 };

@@ -7,6 +7,7 @@ import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { EventRow } from 'components/EventRow';
 import { Spinner } from 'components/Spinner';
+import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
 
 import { axios } from 'lib/axios';
 import storage from 'utils/storage';
@@ -19,22 +20,28 @@ if (!hasVisitedSite) {
 
 export const Home = () => {
   const [events, setEvents] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
   const [showWelcome, setShowWelcome] = useState(!hasVisitedSite);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (pageCount > 9) return;
     setIsLoading(true);
-    axios(`/events?page=1`).then((res) => {
-      setEvents(res);
+    axios(`/events?page=${pageCount}`).then((res) => {
+      setEvents([...events, ...res]);
       setIsLoading(false);
     });
-  }, []);
+  }, [pageCount]);
 
   useEffect(() => {
     if (!showWelcome) {
       hasVisitedSite = true;
     }
   }, [showWelcome]);
+
+  function onIntersect() {
+    setPageCount((c) => c + 1);
+  }
 
   return (
     <>
@@ -43,16 +50,18 @@ export const Home = () => {
           <h2>Latest Events</h2>
         </PageHeader>
         {showWelcome && <WelcomeMessage setShowWelcome={setShowWelcome} />}
-        {events.map((event) => {
+        {events.map((event, index) => {
           return (
-            <Link to={'/profile/' + event.actor.login} key={event.id} className="text--no-underline text--text-color">
+            <Link to={'/profile/' + event.actor.login} key={index} className="text--no-underline text--text-color">
               <RowContainer>
                 <EventRow event={event} />
               </RowContainer>
             </Link>
           );
         })}
-        {isLoading && <Spinner />}
+
+        {isLoading ? <Spinner /> : <IntersectionObserverContainer onIntersect={onIntersect} />}
+        {!isLoading && <h3 className="text--center">No More Events to Show</h3>}
       </PageContainer>
     </>
   );

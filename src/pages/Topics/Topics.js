@@ -4,6 +4,7 @@ import { PageContainer } from 'components/PageContainer';
 import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { Spinner } from 'components/Spinner';
+import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
 import { TopicSelectionBar } from './components/TopicSelectionBar/TopicSelectionBar';
 
 import { axios } from 'lib/axios';
@@ -13,16 +14,27 @@ import styles from './styles.module.css';
 export const Topics = () => {
   const [topics, setTopics] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState(['JavaScript']);
+  const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (pageCount > 9) return;
     setIsLoading(true);
     const query = encodeURIComponent(selectedTopics.join(' OR '));
-    axios(`/search/topics?q=${query}&per_page=20`).then((res) => {
-      setTopics(res.items.filter((el) => el.display_name));
+    axios(`/search/topics?q=${query}&per_page=20&page=${pageCount}`).then((res) => {
+      setTopics((c) => [...c, ...res.items.filter((el) => el.display_name)]);
       setIsLoading(false);
     });
+  }, [selectedTopics, pageCount]);
+
+  useEffect(() => {
+    setPageCount(1);
+    setTopics([]);
   }, [selectedTopics]);
+
+  function onIntersect() {
+    setPageCount((c) => c + 1);
+  }
 
   return (
     <PageContainer>
@@ -33,7 +45,6 @@ export const Topics = () => {
         </div>
       </PageHeader>
       <TopicSelectionBar selectedTopics={selectedTopics} setSelectedTopics={setSelectedTopics} />
-      {isLoading && <Spinner />}
       {topics.map((topic, index) => {
         return (
           <RowContainer key={index}>
@@ -48,6 +59,8 @@ export const Topics = () => {
           </RowContainer>
         );
       })}
+      {isLoading ? <Spinner /> : <IntersectionObserverContainer onIntersect={onIntersect} />}
+      {!isLoading && <h3 className="text--center">No {topics.length > 0 && 'More'} Topics to Show</h3>}
     </PageContainer>
   );
 };
