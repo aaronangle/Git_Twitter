@@ -1,3 +1,4 @@
+import { Avatar } from 'components/Avatar';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
@@ -8,11 +9,11 @@ export const WhoToFollow = () => {
   useEffect(() => {
     const page = Math.floor(Math.random() * 100);
     fetch(`https://api.github.com/search/users?q=""&page=${page}&per_page=5`)
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         setUsers(res.items);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   }, []);
@@ -24,8 +25,8 @@ export const WhoToFollow = () => {
         return (
           <Link key={index} to={`/profile/${user.login}`} className="text--no-underline">
             <div className={styles['card__row']}>
-              <img src={user.avatar_url} alt="avatar" className={styles['card__avatar']} />
-              <div>
+              <Avatar img={user.avatar_url} />
+              <div className="ml-1">
                 <h4 className="m-0 text--text-color">{user.login}</h4>
                 <p className="m-0 text--muted">@{user.login}</p>
               </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CommitsDropdown } from 'components/CommitsDropdown';
+import { Avatar } from 'components/Avatar';
 
 import { joinClassNames } from 'utils/helpers';
 
@@ -12,7 +13,7 @@ export const EventRow = ({ event }) => {
       <div>
         <div className={styles.row}>
           <div className="fs-row f-no-wrap">
-            <img className={styles.row__avatar} src={event.actor.avatar_url} alt="avatar" />
+            <Avatar img={event.actor.avatar_url} />
             <div className="ml-1">
               <div className="fs-row">
                 <h4 className="m-0">@{event.actor.login} </h4>

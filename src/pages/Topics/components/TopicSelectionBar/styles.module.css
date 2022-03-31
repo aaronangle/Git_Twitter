@@ -1,18 +1,24 @@
 .cont {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
+  overflow: auto;
 }
 
 .box {
   background-color: var(--light);
   padding: 10px;
   border-radius: 9999px;
-  min-width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin: 5px;
+  min-width: 90px;
+}
+.box--selected {
+  background-color: var(--primary);
+  color: var(--white);
 }
 .box__text {
   margin: 0;

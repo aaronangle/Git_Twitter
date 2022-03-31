@@ -9,25 +9,30 @@ import styles from './styles.module.css';
 
 export const Topics = () => {
   const [topics, setTopics] = useState([]);
+  const [selectedTopics, setSelectedTopics] = useState(['JavaScript']);
 
   useEffect(() => {
-    const query = encodeURIComponent('javascript OR c# OR ember');
-    fetch(`https://api.github.com/search/topics?q=${query}&per_page=20`)
-      .then((res) => res.json())
-      .then((res) => {
-        setTopics(res.items.filter((el) => el.display_name));
+    const query = encodeURIComponent(selectedTopics.join(' OR '));
+    fetch(`https://api.github.com/search/topics?q=${query}&per_page=20`, {
+      headers: {
+        Authorization: 'token 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',
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        setTopics(res.items.filter(el => el.display_name));
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
-  }, []);
+  }, [selectedTopics]);
 
   return (
     <PageContainer>
       <PageHeader>
         <h2>Topics</h2>
       </PageHeader>
-      <TopicSelectionBar />
+      <TopicSelectionBar selectedTopics={selectedTopics} setSelectedTopics={setSelectedTopics} />
       {topics.map((topic, index) => {
         return (
           <RowContainer key={index}>
