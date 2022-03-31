@@ -8,10 +8,19 @@ import storage from 'utils/storage';
 
 export const Settings = () => {
   const [darkMode, setDarkMode] = useState(storage.getDarkMode() ? true : false);
-  function checkyBoi() {
-    setDarkMode((c) => !c);
-    storage.setDarkMode(darkMode);
+
+  function handleCheck() {
+    setDarkMode((c) => {
+      if (!c) {
+        document.documentElement.setAttribute('color-mode', 'dark');
+      } else {
+        document.documentElement.setAttribute('color-mode', 'light');
+      }
+      storage.setDarkMode(!c);
+      return !c;
+    });
   }
+
   return (
     <>
       <PageContainer>
@@ -20,7 +29,7 @@ export const Settings = () => {
         </PageHeader>
         <div className="fc-row">
           <b className="mr-1">Dark Mode</b>
-          <CheckboxSlider onChange={checkyBoi} checked={darkMode} />
+          <CheckboxSlider onChange={handleCheck} checked={darkMode} />
         </div>
       </PageContainer>
     </>

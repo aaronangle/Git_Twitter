@@ -1,7 +1,3 @@
-.cont {
-  background-color: var(--white);
-}
-
 .link {
   display: flex;
   justify-content: flex-start;
@@ -27,8 +23,8 @@
 .link--selected > svg {
   font-weight: 600;
   stroke-width: 0.7px;
-  stroke: #000000;
-  fill: black;
+  stroke: var(--black);
+  fill: var(--black) black;
 }
 
 @media only screen and (max-width: 1300px) {

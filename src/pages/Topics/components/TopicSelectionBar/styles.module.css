@@ -3,17 +3,20 @@
   z-index: 1;
   right: 5px;
   top: -40px;
-  background-color: white;
+  background-color: var(--light);
   border-radius: 99999px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.13);
 }
 .arrows__arrow {
   background-color: var(--primary);
-  fill: var(--white);
+  fill: white;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   margin: 5px;
+}
+.arrows__arrow:hover {
+  background-color: var(--primaryhover);
 }
 
 .cont {
@@ -48,4 +51,8 @@
 }
 .box__text {
   margin: 0;
+}
+
+.box--selected > .box__text {
+  color: white;
 }

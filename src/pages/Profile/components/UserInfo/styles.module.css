@@ -12,7 +12,7 @@
   position: absolute;
   bottom: -35%;
   left: 30px;
-  background-color: white;
+  background-color: var(--white);
   padding: 5px;
 }
 .relative {

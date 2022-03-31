@@ -25,6 +25,10 @@
   text-align: center;
 }
 
+.btn__svg {
+  fill: white;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -44,6 +48,6 @@
   }
   .main {
     height: calc(100vh - 300px);
-    min-height: 220px;
+    min-height: 280px;
   }
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import { CommitsDropdown } from 'components/CommitsDropdown';
 import { Avatar } from 'components/Avatar';
 
-import { joinClassNames } from 'utils/helpers';
+import { joinClassNames, formatEventTime } from 'utils/helpers';
 
 import styles from './styles.module.css';
 
@@ -27,9 +27,7 @@ export const EventRow = ({ event }) => {
               </div>
             </div>
           </div>
-          <p className={joinClassNames(styles.row__date, 'text--muted mt-0')}>
-            {new Date(event.created_at).toLocaleString([], { month: 'short', day: 'numeric', hour12: true, hour: '2-digit', minute: '2-digit' })}
-          </p>
+          <p className={joinClassNames(styles.row__date, 'text--muted mt-0')}>{formatEventTime(event.created_at)}</p>
         </div>
       </div>
     </>
