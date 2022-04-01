@@ -14,7 +14,7 @@ export const Repos = ({ username }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios(`/users/${username}/repos`).then((res) => {
+    axios(`/users/${username}/repos`).then(res => {
       setRepos(res);
       setIsLoading(false);
     });
@@ -42,7 +42,7 @@ export const Repos = ({ username }) => {
           </a>
         );
       })}
-      {!isLoading && <h3 className="text--center">No {repos.length > 0 && 'More'} Repos to Show</h3>}
+      {!isLoading && <h3 className="text--center">No {repos.length > 0 && 'More'} Repos</h3>}
     </>
   );
 };

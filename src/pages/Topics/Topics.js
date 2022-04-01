@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { PageContainer } from 'components/PageContainer';
 import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
-import { Spinner } from 'components/Spinner';
 import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
 import { TopicSelectionBar } from './components/TopicSelectionBar/TopicSelectionBar';
 
@@ -16,14 +15,17 @@ export const Topics = () => {
   const [selectedTopics, setSelectedTopics] = useState(['JavaScript']);
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [keepFetching, setKeepFetching] = useState(true);
 
   useEffect(() => {
-    if (pageCount > 9) return;
     setIsLoading(true);
     const query = encodeURIComponent(selectedTopics.join(' OR '));
-    axios(`/search/topics?q=${query}&per_page=20&page=${pageCount}`).then((res) => {
-      setTopics((c) => [...c, ...res.items.filter((el) => el.display_name)]);
+    axios(`/search/topics?q=${query}&per_page=20&page=${pageCount}`).then(res => {
+      setTopics(c => [...c, ...res.items.filter(el => el.display_name)]);
       setIsLoading(false);
+      if (res.length < 20) {
+        setKeepFetching(false);
+      }
     });
   }, [selectedTopics, pageCount]);
 
@@ -33,7 +35,7 @@ export const Topics = () => {
   }, [selectedTopics]);
 
   function onIntersect() {
-    setPageCount((c) => c + 1);
+    setPageCount(c => c + 1);
   }
 
   return (
@@ -59,8 +61,8 @@ export const Topics = () => {
           </RowContainer>
         );
       })}
-      {isLoading ? <Spinner /> : <IntersectionObserverContainer onIntersect={onIntersect} />}
-      {!isLoading && <h3 className="text--center">No {topics.length > 0 && 'More'} Topics to Show</h3>}
+      {keepFetching && <IntersectionObserverContainer onIntersect={onIntersect} isLoading={isLoading} />}
+      {!isLoading && <h3 className="text--center">No {topics.length > 0 && 'More'} Topics</h3>}
     </PageContainer>
   );
 };

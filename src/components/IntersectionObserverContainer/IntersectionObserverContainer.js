@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { Spinner } from 'components/Spinner';
 
 import styles from './styles.module.css';
+import useElementOnScreen from 'hooks/useElementOnScreen';
 
 const options = {
   root: null,
@@ -8,26 +10,22 @@ const options = {
   threshold: 1.0,
 };
 
-export const IntersectionObserverContainer = ({ onIntersect }) => {
-  const intersectionRef = useRef(null);
+export const IntersectionObserverContainer = ({ onIntersect, isLoading }) => {
+  const [intersectionRef, isVisible] = useElementOnScreen(options);
 
-  const callbackFunction = (entries) => {
-    const [entry] = entries;
-    if (entry.isIntersecting) {
-      onIntersect();
-    }
-  };
+  const callIntersect = useCallback(() => {
+    onIntersect();
+  }, [onIntersect]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, options);
-    if (intersectionRef.current) observer.observe(intersectionRef.current);
-    return () => {
-      if (intersectionRef.current) observer.unobserve(intersectionRef.current);
-    };
-  }, [intersectionRef]);
+    if (isVisible) {
+      callIntersect();
+    }
+  }, [isVisible, callIntersect]);
 
   return (
     <>
+      {isLoading && <Spinner />}
       <div className={styles.observer} ref={intersectionRef}></div>
     </>
   );

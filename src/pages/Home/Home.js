@@ -6,7 +6,6 @@ import { PageContainer } from 'components/PageContainer';
 import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { EventRow } from 'components/EventRow';
-import { Spinner } from 'components/Spinner';
 import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
 
 import { axios } from 'lib/axios';
@@ -23,13 +22,16 @@ export const Home = () => {
   const [pageCount, setPageCount] = useState(1);
   const [showWelcome, setShowWelcome] = useState(!hasVisitedSite);
   const [isLoading, setIsLoading] = useState(true);
+  const [keepFetching, setKeepFetching] = useState(true);
 
   useEffect(() => {
-    if (pageCount > 9) return;
     setIsLoading(true);
-    axios(`/events?page=${pageCount}`).then((res) => {
-      setEvents([...events, ...res]);
+    axios(`/events?page=${pageCount}`).then(res => {
+      setEvents(e => [...e, ...res]);
       setIsLoading(false);
+      if (res.length < 30) {
+        setKeepFetching(false);
+      }
     });
   }, [pageCount]);
 
@@ -40,7 +42,7 @@ export const Home = () => {
   }, [showWelcome]);
 
   function onIntersect() {
-    setPageCount((c) => c + 1);
+    setPageCount(c => c + 1);
   }
 
   return (
@@ -59,9 +61,8 @@ export const Home = () => {
             </Link>
           );
         })}
-
-        {isLoading ? <Spinner /> : <IntersectionObserverContainer onIntersect={onIntersect} />}
-        {!isLoading && <h3 className="text--center">No More Events to Show</h3>}
+        {keepFetching && <IntersectionObserverContainer onIntersect={onIntersect} isLoading={isLoading} />}
+        {!isLoading && <h3 className="text--center">No More Events</h3>}
       </PageContainer>
     </>
   );

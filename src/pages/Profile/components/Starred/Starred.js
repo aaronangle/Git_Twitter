@@ -15,7 +15,7 @@ export const Starred = ({ username }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios(`/users/${username}/starred`).then((res) => {
+    axios(`/users/${username}/starred`).then(res => {
       setStarred(res);
       setIsLoading(false);
     });
@@ -45,7 +45,7 @@ export const Starred = ({ username }) => {
                 </div>
               </div>
               <p>{repo.description}</p>
-              {repo.topics.map((topic) => {
+              {repo.topics.map(topic => {
                 return (
                   <p key={topic} className={styles['row__topic']}>
                     {topic}
@@ -56,7 +56,7 @@ export const Starred = ({ username }) => {
           </a>
         );
       })}
-      {!isLoading && <h3 className="text--center">No {starred.length > 0 && 'More'} Starred Repos to Show</h3>}
+      {!isLoading && <h3 className="text--center">No {starred.length > 0 && 'More'} Starred Repos</h3>}
     </>
   );
 };
