@@ -1,0 +1,38 @@
+.box {
+  padding: 40px;
+  border: solid 1px var(--exlightgray);
+  margin: 10px;
+  border-radius: 15px;
+  background-color: white;
+  min-width: 250px;
+  cursor: pointer;
+}
+.box:hover {
+  background-color: #f5f8fa;
+}
+.box--dark,
+.box--hacker {
+  background-color: black;
+  border-color: white;
+}
+.box--dark:hover,
+.box--hacker:hover {
+  background-color: rgb(44, 44, 44);
+}
+.box__radio {
+  margin-right: 10px;
+  padding: 10px;
+}
+.box__text {
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.box__text--dark {
+  color: white;
+}
+.box__text--hacker {
+  color: #04e11b;
+  font-family: 'Press Start 2P', cursive;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { Spinner } from 'components/Spinner';
 
 import styles from './styles.module.css';
@@ -13,15 +13,11 @@ const options = {
 export const IntersectionObserverContainer = ({ onIntersect, isLoading }) => {
   const [intersectionRef, isVisible] = useElementOnScreen(options);
 
-  const callIntersect = useCallback(() => {
-    onIntersect();
-  }, [onIntersect]);
-
   useEffect(() => {
     if (isVisible) {
-      callIntersect();
+      onIntersect();
     }
-  }, [isVisible, callIntersect]);
+  }, [isVisible, onIntersect]);
 
   return (
     <>

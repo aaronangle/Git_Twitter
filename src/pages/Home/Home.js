@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import { WelcomeMessage } from './components/WelcomeMessage/WelcomeMessage';
@@ -7,8 +7,11 @@ import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { EventRow } from 'components/EventRow';
 import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
-
 import { axios } from 'lib/axios';
+
+import { getEvents } from './api/getEvents';
+import { useQuery } from 'react-query';
+
 import storage from 'utils/storage';
 
 let hasVisitedSite = storage.hasVisitedSite();
@@ -24,15 +27,17 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [keepFetching, setKeepFetching] = useState(true);
 
+  const result = useQuery(['events', pageCount], axios.get(`/events?page=${pageCount}`));
+  console.log(getEvents());
+
   useEffect(() => {
-    setIsLoading(true);
-    axios(`/events?page=${pageCount}`).then(res => {
-      setEvents(e => [...e, ...res]);
-      setIsLoading(false);
-      if (res.length < 30) {
-        setKeepFetching(false);
-      }
-    });
+    // setIsLoading(true);
+    // const res = getEvents(pageCount);
+    // setEvents((e) => [...e, ...res]);
+    // setIsLoading(false);
+    // if (res.length < 30) {
+    //   setKeepFetching(false);
+    // }
   }, [pageCount]);
 
   useEffect(() => {
@@ -41,9 +46,9 @@ export const Home = () => {
     }
   }, [showWelcome]);
 
-  function onIntersect() {
-    setPageCount(c => c + 1);
-  }
+  const onIntersect = useCallback(() => {
+    setPageCount((c) => c + 1);
+  }, []);
 
   return (
     <>
@@ -61,8 +66,8 @@ export const Home = () => {
             </Link>
           );
         })}
-        {keepFetching && <IntersectionObserverContainer onIntersect={onIntersect} isLoading={isLoading} />}
-        {!isLoading && <h3 className="text--center">No More Events</h3>}
+        {/* {keepFetching && <IntersectionObserverContainer onIntersect={onIntersect} isLoading={isLoading} />} */}
+        {/* {!isLoading && <h3 className="text--center">No More Events</h3>} */}
       </PageContainer>
     </>
   );

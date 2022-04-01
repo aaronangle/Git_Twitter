@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import { PageContainer } from 'components/PageContainer';
 import { PageHeader } from 'components/PageHeader';
@@ -20,8 +20,8 @@ export const Topics = () => {
   useEffect(() => {
     setIsLoading(true);
     const query = encodeURIComponent(selectedTopics.join(' OR '));
-    axios(`/search/topics?q=${query}&per_page=20&page=${pageCount}`).then(res => {
-      setTopics(c => [...c, ...res.items.filter(el => el.display_name)]);
+    axios(`/search/topics?q=${query}&per_page=20&page=${pageCount}`).then((res) => {
+      setTopics((c) => [...c, ...res.items.filter((el) => el.display_name)]);
       setIsLoading(false);
       if (res.length < 20) {
         setKeepFetching(false);
@@ -34,9 +34,9 @@ export const Topics = () => {
     setTopics([]);
   }, [selectedTopics]);
 
-  function onIntersect() {
-    setPageCount(c => c + 1);
-  }
+  const onIntersect = useCallback(() => {
+    setPageCount((c) => c + 1);
+  }, []);
 
   return (
     <PageContainer>

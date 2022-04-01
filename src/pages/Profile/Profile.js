@@ -19,10 +19,14 @@ export const Profile = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios(`/users/${username}`).then((res) => {
-      setUser(res);
-      setIsLoading(false);
-    });
+    axios(`/users/${username}`)
+      .then((res) => {
+        setUser(res);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
   }, [username]);
 
   if (isLoading) {

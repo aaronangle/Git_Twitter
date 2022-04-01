@@ -5,11 +5,11 @@ const storage = {
   setHasVisitedSite: (value) => {
     window.localStorage.setItem('hasVisitedSite', value);
   },
-  getDarkMode: () => {
-    return JSON.parse(window.localStorage.getItem('darkMode'));
+  getTheme: () => {
+    return window.localStorage.getItem('mode');
   },
-  setDarkMode: (value) => {
-    window.localStorage.setItem('darkMode', value);
+  setTheme: (value) => {
+    window.localStorage.setItem('mode', value);
   },
 };
 

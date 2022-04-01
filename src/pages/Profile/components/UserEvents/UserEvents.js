@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import { RowContainer } from 'components/RowContainer';
 import { EventRow } from 'components/EventRow';
@@ -14,8 +14,8 @@ export const UserEvents = ({ username }) => {
 
   useEffect(() => {
     setLoading(true);
-    axios(`/users/${username}/events?page=${pageCount}`).then(res => {
-      setEvents(e => [...e, ...res]);
+    axios(`/users/${username}/events?page=${pageCount}`).then((res) => {
+      setEvents((e) => [...e, ...res]);
       setLoading(false);
       if (res.length < 30) {
         setKeepFetching(false);
@@ -23,13 +23,13 @@ export const UserEvents = ({ username }) => {
     });
   }, [pageCount, username]);
 
-  function onIntersect() {
-    setPageCount(c => c + 1);
-  }
+  const onIntersect = useCallback(() => {
+    setPageCount((c) => c + 1);
+  }, []);
 
   return (
     <>
-      {events.map(event => {
+      {events.map((event) => {
         return (
           <RowContainer key={event.id}>
             <EventRow event={event} />

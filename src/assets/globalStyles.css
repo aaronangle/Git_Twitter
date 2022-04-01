@@ -10,9 +10,11 @@
   --redbg: #fdf3f6;
   --red: #cc2952;
   --green: #00ba7c;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 /* Dark Mode */
 :root[color-mode='dark'] {
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --primary: #1da1f2;
   --primaryhover: #008cff;
   --black: #ffffff;
@@ -25,6 +27,21 @@
   --red: #fdf3f6;
   --green: #00ba7c;
 }
+/* Dark Mode */
+:root[color-mode='hacker'] {
+  --primary: hsl(92, 97%, 46%);
+  --primaryhover: #80f01d;
+  --black: #04e11b;
+  --gray: #16942f;
+  --lightgray: #16181c;
+  --exlightgray: #16181c;
+  --light: #16181c;
+  --white: #000000;
+  --redbg: #cc2952;
+  --red: #fdf3f6;
+  --green: #00ba7c;
+  --font-family: 'Press Start 2P', cursive;
+}
 
 * {
   box-sizing: border-box;
@@ -33,7 +50,7 @@
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--white);
