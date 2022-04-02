@@ -2,32 +2,17 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import { WelcomeMessage } from './components/WelcomeMessage/WelcomeMessage';
-import { PageContainer } from 'components/PageContainer';
-import { PageHeader } from 'components/PageHeader';
-import { RowContainer } from 'components/RowContainer';
-import { EventRow } from 'components/EventRow';
-import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
+import { PageContainer } from 'components/Layouts/PageContainer';
+import { PageHeader } from 'components/Layouts/PageHeader';
+import { RowContainer } from 'components/Elements/RowContainer';
+import { EventRow } from 'components/Elements/EventRow';
+import { IntersectionObserverContainer } from 'components/Functional/IntersectionObserverContainer';
+import { Spinner } from 'components/Elements/Spinner';
 
 import { useEvents } from './api/getEvents';
 
-import storage from 'utils/storage';
-import { Spinner } from 'components/Spinner';
-
-let hasVisitedSite = storage.hasVisitedSite();
-
-if (!hasVisitedSite) {
-  storage.setHasVisitedSite(true);
-}
-
 export const Home = () => {
   const [pageCount, setPageCount] = useState(2);
-  const [showWelcome, setShowWelcome] = useState(!hasVisitedSite);
-
-  useEffect(() => {
-    if (!showWelcome) {
-      hasVisitedSite = true;
-    }
-  }, [showWelcome]);
 
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useEvents(pageCount);
@@ -45,7 +30,7 @@ export const Home = () => {
         <PageHeader>
           <h2>Latest Events</h2>
         </PageHeader>
-        {showWelcome && <WelcomeMessage setShowWelcome={setShowWelcome} />}
+        <WelcomeMessage />
         {data.pages.map((events) => {
           return events.map((event, index) => {
             return (

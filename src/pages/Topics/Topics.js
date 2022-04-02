@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { PageContainer } from 'components/PageContainer';
-import { PageHeader } from 'components/PageHeader';
-import { RowContainer } from 'components/RowContainer';
-import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
+import { PageContainer } from 'components/Layouts/PageContainer';
+import { PageHeader } from 'components/Layouts/PageHeader';
+import { RowContainer } from 'components/Elements/RowContainer';
+import { IntersectionObserverContainer } from 'components/Functional/IntersectionObserverContainer';
 import { TopicSelectionBar } from './components/TopicSelectionBar/TopicSelectionBar';
-import { Spinner } from 'components/Spinner';
+import { Spinner } from 'components/Elements/Spinner';
 
 import { useTopics } from './api/getTopics';
 
@@ -20,8 +20,6 @@ export const Topics = () => {
     pageCount,
     query
   );
-
-  console.log(status);
 
   useEffect(() => {
     setPageCount(2);
@@ -48,22 +46,20 @@ export const Topics = () => {
       ) : (
         <>
           {data.pages.map((topics) => {
-            return topics.items
-              .filter((el) => el.display_name)
-              .map((topic, index) => {
-                return (
-                  <RowContainer key={index}>
-                    <h3>{topic.display_name}</h3>
-                    <p>
-                      <b>Released:</b> {topic.released}
-                    </p>
-                    <p>
-                      <b>Creator:</b> {topic.created_by}
-                    </p>
-                    <p className={styles.row__text}>{topic.description}</p>
-                  </RowContainer>
-                );
-              });
+            return topics.map((topic, index) => {
+              return (
+                <RowContainer key={index}>
+                  <h3>{topic.display_name}</h3>
+                  <p>
+                    <b>Released:</b> {topic.released}
+                  </p>
+                  <p>
+                    <b>Creator:</b> {topic.created_by}
+                  </p>
+                  <p className={styles.row__text}>{topic.description}</p>
+                </RowContainer>
+              );
+            });
           })}
           {hasNextPage && !isFetchingNextPage && (
             <IntersectionObserverContainer

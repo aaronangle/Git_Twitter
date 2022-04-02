@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { joinClassNames, pluralizeName } from 'utils/helpers';
+import { joinClassNames, pluralizeName } from 'utils';
 
 export const UserInfo = ({ user, children }) => {
   return (
@@ -15,7 +15,12 @@ export const UserInfo = ({ user, children }) => {
         <p>{user.bio}</p>
         <div className={styles.flexRow}>
           {user.blog && (
-            <a href={user.blog} target="_blank" rel="noopener noreferrer" className={joinClassNames(styles.flex, styles.primary)}>
+            <a
+              href={user.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={joinClassNames(styles.flex, styles.primary)}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                 <path d="M8.465 11.293c1.133-1.133 3.109-1.133 4.242 0l.707.707 1.414-1.414-.707-.707c-.943-.944-2.199-1.465-3.535-1.465s-2.592.521-3.535 1.465L4.929 12a5.008 5.008 0 0 0 0 7.071 4.983 4.983 0 0 0 3.535 1.462A4.982 4.982 0 0 0 12 19.071l.707-.707-1.414-1.414-.707.707a3.007 3.007 0 0 1-4.243 0 3.005 3.005 0 0 1 0-4.243l2.122-2.121z"></path>
                 <path d="m12 4.929-.707.707 1.414 1.414.707-.707a3.007 3.007 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-2.122 2.121c-1.133 1.133-3.109 1.133-4.242 0L10.586 12l-1.414 1.414.707.707c.943.944 2.199 1.465 3.535 1.465s2.592-.521 3.535-1.465L19.071 12a5.008 5.008 0 0 0 0-7.071 5.006 5.006 0 0 0-7.071 0z"></path>
@@ -43,7 +48,8 @@ export const UserInfo = ({ user, children }) => {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path d="M21 20V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2zM9 18H7v-2h2v2zm0-4H7v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm2-5H5V7h14v2z"></path>
             </svg>
-            Joined {new Date(user.created_at).toLocaleDateString([], { month: 'long', year: 'numeric' })}
+            Joined{' '}
+            {new Date(user.created_at).toLocaleDateString([], { month: 'long', year: 'numeric' })}
           </p>
         </div>
         <div className={styles.flexRow}>
@@ -51,7 +57,8 @@ export const UserInfo = ({ user, children }) => {
             <b>{user.following}</b> <span className={styles.muted}>Following</span>
           </p>
           <p className="">
-            <b>{user.followers}</b> <span className={styles.muted}>{pluralizeName('Follower', user.followers)}</span>
+            <b>{user.followers}</b>{' '}
+            <span className={styles.muted}>{pluralizeName('Follower', user.followers)}</span>
           </p>
         </div>
         {children}

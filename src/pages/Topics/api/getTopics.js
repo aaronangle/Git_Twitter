@@ -2,18 +2,20 @@ import { useInfiniteQuery } from 'react-query';
 
 import { axios } from 'lib/axios';
 
-export const getTopics = ({ pageParam = 1, queryKey }) => {
+export const getTopics = async ({ pageParam = 1, queryKey }) => {
   const query = queryKey[1];
-  return axios(`/search/topics?q=${query}&per_page=20&page=${pageParam}`);
+  const res = await axios(`/search/topics?q=${query}&per_page=20&page=${pageParam}`);
+  return res.items.filter((el) => el.display_name);
 };
 
 export const useTopics = (pageCount, query) => {
   return useInfiniteQuery(['topics', query], getTopics, {
     getNextPageParam: (lastPage) => {
-      if (lastPage && lastPage.length < 20) {
+      if (lastPage && lastPage.length < 1) {
         return false;
       }
       return pageCount;
     },
+    staleTime: 600000,
   });
 };

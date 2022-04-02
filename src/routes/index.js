@@ -6,7 +6,7 @@ import { Topics } from '../pages/Topics';
 import { Profile } from '../pages/Profile';
 import { Settings } from '../pages/Settings';
 
-import { MainLayout } from '../components/Layout';
+import { MainLayout } from '../components/Layouts/Layout';
 
 const App = () => {
   return (

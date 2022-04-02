@@ -1,0 +1,19 @@
+.cont {
+  position: relative;
+  margin-bottom: 30px;
+}
+.cont__input {
+  border: none;
+  padding: 13px;
+  border-radius: 55px;
+  background-color: var(--exlightgray);
+  width: 100%;
+  padding-left: 45px;
+}
+.cont__svg {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  z-index: 1;
+  fill: var(--black);
+}

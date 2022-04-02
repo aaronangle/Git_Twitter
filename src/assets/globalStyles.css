@@ -10,11 +10,13 @@
   --redbg: #fdf3f6;
   --red: #cc2952;
   --green: #00ba7c;
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 /* Dark Mode */
 :root[color-mode='dark'] {
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --primary: #1da1f2;
   --primaryhover: #008cff;
   --black: #ffffff;
@@ -40,7 +42,7 @@
   --redbg: #cc2952;
   --red: #fdf3f6;
   --green: #00ba7c;
-  --font-family: 'Press Start 2P', cursive;
+  --font-family: 'Roboto Mono', monospace;
 }
 
 * {

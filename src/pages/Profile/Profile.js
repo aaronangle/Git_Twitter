@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { UserInfo } from './components/UserInfo/UserInfo';
@@ -7,39 +7,27 @@ import { UserNotFound } from './components/UserNotFound/UserNotFound';
 import { SelectBar } from './components/SelectBar/SelectBar';
 import { Repos } from './components/Repos/Repos';
 import { Starred } from './components/Starred/Starred';
-import { Spinner } from 'components/Spinner';
+import { Spinner } from 'components/Elements/Spinner';
 
-import { axios } from 'lib/axios';
+import { useUser } from './api/getUser';
 
 export const Profile = () => {
   const { username } = useParams();
-  const [user, setUser] = useState({});
   const [selectedView, setSelectedView] = useState('events');
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setIsLoading(true);
-    axios(`/users/${username}`)
-      .then((res) => {
-        setUser(res);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
-  }, [username]);
+  const { isLoading, isError, data, error } = useUser(username);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
 
-  if (!user.login) {
+  if (isError) return <p>{error.message}</p>;
+
+  if (!data.login) {
     return <UserNotFound username={username} />;
   }
 
   return (
     <>
-      <UserInfo user={user}>
+      <UserInfo user={data}>
         <SelectBar selectedView={selectedView} setSelectedView={setSelectedView} />
       </UserInfo>
       {selectedView === 'events' && <UserEvents username={username} />}

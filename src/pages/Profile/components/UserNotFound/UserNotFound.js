@@ -1,5 +1,5 @@
 import React from 'react';
-import { UsersSearch } from 'components/UsersSearch';
+import { UsersSearch } from 'components/Functional/UsersSearch';
 import styles from './styles.module.css';
 
 export const UserNotFound = ({ username }) => {

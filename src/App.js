@@ -2,7 +2,7 @@ import { AppRoutes } from './routes';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
-import storage from 'utils/storage';
+import { storage } from 'utils';
 import { queryClient } from 'lib/react-query';
 
 const ErrorFallback = () => {

@@ -31,7 +31,6 @@ axios.interceptors.response.use(
       console.log(error.response.headers);
     }
     //show notification to user
-    //log error on server
     return Promise.reject(error);
   }
 );

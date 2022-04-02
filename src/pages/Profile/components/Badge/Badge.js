@@ -1,5 +1,5 @@
 import React from 'react';
-import { joinClassNames, pluralizeName } from 'utils/helpers';
+import { joinClassNames, pluralizeName } from 'utils';
 import styles from './styles.module.css';
 
 export const Badge = ({ isIssue, isStars, count }) => {
@@ -23,7 +23,8 @@ export const Badge = ({ isIssue, isStars, count }) => {
         </svg>
       )}
       <p className={styles.badge__text}>
-        {isStars ? pluralizeName('Star', count) : pluralizeName('Fork', count)} <span className={styles.badge__count}>{count}</span>
+        {isStars ? pluralizeName('Star', count) : pluralizeName('Fork', count)}{' '}
+        <span className={styles.badge__count}>{count}</span>
       </p>
     </div>
   );
