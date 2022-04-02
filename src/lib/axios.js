@@ -26,7 +26,7 @@ axios.interceptors.response.use(
   (error) => {
     console.error(error);
     if (error.response) {
-      console.log(error.response.data);
+      console.log(error.response.data.message);
       console.log(error.response.status);
       console.log(error.response.headers);
     }

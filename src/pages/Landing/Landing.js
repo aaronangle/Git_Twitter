@@ -13,10 +13,14 @@ export const Landing = () => {
         <h1 className="mb-0">Welcome to Git_Tweeter</h1>
         <p>
           A Twitter-ish clone for GitHub data &amp; users built by&nbsp;
-          <a href="https://aaronangle.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://aaronangle.github.io/Portfolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             me
           </a>
-          &nbsp;with React, Redux, and CSS modules, using GitHub's API
+          &nbsp;with React, React-Query, and CSS modules, using GitHub's API
         </p>
         <Link to={'/home'}>
           <Button className={'btn-primary'}>

@@ -5,38 +5,32 @@ import { PageHeader } from 'components/PageHeader';
 import { RowContainer } from 'components/RowContainer';
 import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
 import { TopicSelectionBar } from './components/TopicSelectionBar/TopicSelectionBar';
+import { Spinner } from 'components/Spinner';
 
-import { axios } from 'lib/axios';
+import { useTopics } from './api/getTopics';
 
 import styles from './styles.module.css';
 
 export const Topics = () => {
-  const [topics, setTopics] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState(['JavaScript']);
-  const [pageCount, setPageCount] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-  const [keepFetching, setKeepFetching] = useState(true);
+  const [pageCount, setPageCount] = useState(2);
+
+  const query = encodeURIComponent(selectedTopics.join(' OR '));
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useTopics(
+    pageCount,
+    query
+  );
+
+  console.log(status);
 
   useEffect(() => {
-    setIsLoading(true);
-    const query = encodeURIComponent(selectedTopics.join(' OR '));
-    axios(`/search/topics?q=${query}&per_page=20&page=${pageCount}`).then((res) => {
-      setTopics((c) => [...c, ...res.items.filter((el) => el.display_name)]);
-      setIsLoading(false);
-      if (res.length < 20) {
-        setKeepFetching(false);
-      }
-    });
-  }, [selectedTopics, pageCount]);
-
-  useEffect(() => {
-    setPageCount(1);
-    setTopics([]);
+    setPageCount(2);
   }, [selectedTopics]);
 
   const onIntersect = useCallback(() => {
+    fetchNextPage();
     setPageCount((c) => c + 1);
-  }, []);
+  }, [fetchNextPage]);
 
   return (
     <PageContainer>
@@ -47,22 +41,41 @@ export const Topics = () => {
         </div>
       </PageHeader>
       <TopicSelectionBar selectedTopics={selectedTopics} setSelectedTopics={setSelectedTopics} />
-      {topics.map((topic, index) => {
-        return (
-          <RowContainer key={index}>
-            <h3>{topic.display_name}</h3>
-            <p>
-              <b>Released:</b> {topic.released}
-            </p>
-            <p>
-              <b>Creator:</b> {topic.created_by}
-            </p>
-            <p className={styles.row__text}>{topic.description}</p>
-          </RowContainer>
-        );
-      })}
-      {keepFetching && <IntersectionObserverContainer onIntersect={onIntersect} isLoading={isLoading} />}
-      {!isLoading && <h3 className="text--center">No {topics.length > 0 && 'More'} Topics</h3>}
+      {status === 'loading' ? (
+        <Spinner />
+      ) : status === 'error' ? (
+        <p>Error: {error.message}</p>
+      ) : (
+        <>
+          {data.pages.map((topics) => {
+            return topics.items
+              .filter((el) => el.display_name)
+              .map((topic, index) => {
+                return (
+                  <RowContainer key={index}>
+                    <h3>{topic.display_name}</h3>
+                    <p>
+                      <b>Released:</b> {topic.released}
+                    </p>
+                    <p>
+                      <b>Creator:</b> {topic.created_by}
+                    </p>
+                    <p className={styles.row__text}>{topic.description}</p>
+                  </RowContainer>
+                );
+              });
+          })}
+          {hasNextPage && !isFetchingNextPage && (
+            <IntersectionObserverContainer
+              onIntersect={onIntersect}
+              isLoading={isFetchingNextPage}
+            />
+          )}
+          {!isFetchingNextPage && !hasNextPage && (
+            <h3 className="text--center">No {data.pages.length > 0 && 'More'} Topics</h3>
+          )}
+        </>
+      )}
     </PageContainer>
   );
 };

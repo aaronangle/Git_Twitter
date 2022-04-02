@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Avatar } from 'components/Avatar';
 import { Spinner } from 'components/Spinner';
 
-import { axios } from 'lib/axios';
+import { useUsers } from './api/getUsers';
 
 import styles from './styles.module.css';
 
 export const WhoToFollow = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, isError, data, error } = useUsers();
 
-  useEffect(() => {
-    setIsLoading(true);
-    const page = Math.floor(Math.random() * 100);
-    axios(`/search/users?q=""&page=${page}&per_page=5`).then((res) => {
-      setUsers(res.items);
-      setIsLoading(false);
-    });
-  }, []);
+  if (isLoading) return <Spinner />;
+  if (isError) return <p>{error.message}</p>;
 
   return (
     <div className={styles.card}>
       <h3 className="ml-1 mt-0 mb-1">Who To Follow</h3>
-      {users.map((user, index) => {
+      {data.items.map((user, index) => {
         return (
           <Link key={index} to={`/profile/${user.login}`} className="text--no-underline">
             <div className={styles['card__row']}>
@@ -37,7 +30,6 @@ export const WhoToFollow = () => {
           </Link>
         );
       })}
-      {isLoading && <Spinner />}
     </div>
   );
 };

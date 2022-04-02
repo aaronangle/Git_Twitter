@@ -1,9 +1,20 @@
 import { AppRoutes } from './routes';
+import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import storage from 'utils/storage';
+import { queryClient } from 'lib/react-query';
 
-const queryClient = new QueryClient();
+const ErrorFallback = () => {
+  return (
+    <div className="f-c-col m-1 p-1">
+      <h2>
+        Whoops, something went wrong, probably too many requests to GitHub's API. Give it a second
+        and try refreshing the page.
+      </h2>
+    </div>
+  );
+};
 
 function App() {
   const theme = storage.getTheme();
@@ -16,11 +27,13 @@ function App() {
 
   return (
     <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <AppRoutes />
-        </Router>
-      </QueryClientProvider>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <QueryClientProvider client={queryClient}>
+          <Router>
+            <AppRoutes />
+          </Router>
+        </QueryClientProvider>
+      </ErrorBoundary>
     </div>
   );
 }

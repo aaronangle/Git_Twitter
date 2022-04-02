@@ -8,8 +8,7 @@ import { RowContainer } from 'components/RowContainer';
 import { EventRow } from 'components/EventRow';
 import { IntersectionObserverContainer } from 'components/IntersectionObserverContainer';
 
-import { getEvents } from './api/getEvents';
-import { useInfiniteQuery } from 'react-query';
+import { useEvents } from './api/getEvents';
 
 import storage from 'utils/storage';
 import { Spinner } from 'components/Spinner';
@@ -30,19 +29,8 @@ export const Home = () => {
     }
   }, [showWelcome]);
 
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery(
-    ['events'],
-    getEvents,
-    {
-      getNextPageParam: (lastPage, pages) => {
-        if (lastPage.length === 30) {
-          return pageCount;
-        } else {
-          return false;
-        }
-      },
-    }
-  );
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+    useEvents(pageCount);
 
   const onIntersect = useCallback(() => {
     fetchNextPage();
