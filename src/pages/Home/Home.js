@@ -24,31 +24,33 @@ export const Home = () => {
   const [events, setEvents] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [showWelcome, setShowWelcome] = useState(!hasVisitedSite);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [keepFetching, setKeepFetching] = useState(true);
 
-  const result = useQuery(['events', pageCount], axios.get(`/events?page=${pageCount}`));
-  console.log(getEvents());
+  const { isLoading, data } = useQuery(['events'], () => axios.get(`/events?page=${1}`));
+  console.log(isLoading);
+  if (isLoading) return;
+  console.log(data);
 
-  useEffect(() => {
-    // setIsLoading(true);
-    // const res = getEvents(pageCount);
-    // setEvents((e) => [...e, ...res]);
-    // setIsLoading(false);
-    // if (res.length < 30) {
-    //   setKeepFetching(false);
-    // }
-  }, [pageCount]);
+  // useEffect(() => {
+  //   // setIsLoading(true);
+  //   // const res = getEvents(pageCount);
+  //   // setEvents((e) => [...e, ...res]);
+  //   // setIsLoading(false);
+  //   // if (res.length < 30) {
+  //   //   setKeepFetching(false);
+  //   // }
+  // }, [pageCount]);
 
-  useEffect(() => {
-    if (!showWelcome) {
-      hasVisitedSite = true;
-    }
-  }, [showWelcome]);
+  // useEffect(() => {
+  //   if (!showWelcome) {
+  //     hasVisitedSite = true;
+  //   }
+  // }, [showWelcome]);
 
-  const onIntersect = useCallback(() => {
-    setPageCount((c) => c + 1);
-  }, []);
+  // const onIntersect = useCallback(() => {
+  //   setPageCount(c => c + 1);
+  // }, []);
 
   return (
     <>
