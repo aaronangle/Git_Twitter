@@ -1,8 +1,5 @@
 import { axios } from 'lib/axios';
 
-export const getEvents = (pageCount = 1) => {
-  console.log(pageCount);
-  return axios.get(`/events?page=${pageCount}`);
+export const getEvents = ({ pageParam = 1 }) => {
+  return axios.get(`/events?page=${pageParam}`);
 };
-
-// export const useEvents = useQuery('repoData', () => getEvents());
