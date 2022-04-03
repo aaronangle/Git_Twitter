@@ -6,7 +6,7 @@ View the site here: [https://aaronangle.github.io/twitter_clone/](https://aarona
 
 ## Project Structure
 
-Most of the code lives in the `src` folder and looks like this:
+The layout of the `src` folder looks like this:
 
 ```sh
 src
@@ -23,7 +23,7 @@ src
 |
 +-- hooks             # shared hooks used across the entire application
 |
-+-- lib               # libraries that wrapped in custom functionality and exported
++-- lib               # libraries that are wrapped in custom functionality and exported
 |
 +-- pages             # every page of the application (Some people architect React apps by features instead of pages. For this project I thought pages made more sense to go with)
 |
@@ -32,7 +32,7 @@ src
 +-- utils             # shared utility functions used across the app
 ```
 
-Most of the code lives inside the pages folder.
+Most of the code lives inside the `pages` folder.
 
 Here's a structure example of a page
 
