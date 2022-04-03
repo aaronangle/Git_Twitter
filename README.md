@@ -54,6 +54,8 @@ For this project I used CSS modules to scope the CSS to each component. I refrai
 
 `src/assets/globalStyles.css` contains unscoped CSS that can be used in any component. Aside from that every component or page contains a `styles.module.css` file as needed.
 
+When creating class names in CSS I loosely followed the BEM naming convention.
+
 ## Project Challenges
 
 One of the biggest challenges I ran into was the rate limit on the GitHub API. GitHub only allows a few amount of API calls every minute. In order to mitigate this problem I implemented `react-query` and cached the data as much as possible.
