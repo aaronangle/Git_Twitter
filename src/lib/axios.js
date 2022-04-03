@@ -24,13 +24,11 @@ axios.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    console.error(error);
     if (error.response) {
       console.log(error.response.data.message);
       console.log(error.response.status);
       console.log(error.response.headers);
     }
-    //show notification to user
     return Promise.reject(error);
   }
 );

@@ -1,0 +1,15 @@
+.box {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: var(--redbg);
+  border-left: solid 5px var(--red);
+  padding: 15px;
+  border-radius: 10px;
+}
+.box__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}

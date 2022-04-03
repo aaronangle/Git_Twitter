@@ -8,7 +8,7 @@ import { useRepos } from 'pages/Profile/api/getRepos';
 
 import styles from './styles.module.css';
 
-export const Repos = ({ username }) => {
+export const UserRepos = ({ username }) => {
   const { isLoading, isError, data, error } = useRepos(username);
 
   if (isLoading) {

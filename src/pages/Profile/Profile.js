@@ -5,8 +5,8 @@ import { UserInfo } from './components/UserInfo/UserInfo';
 import { UserEvents } from './components/UserEvents/UserEvents';
 import { UserNotFound } from './components/UserNotFound/UserNotFound';
 import { SelectBar } from './components/SelectBar/SelectBar';
-import { Repos } from './components/Repos/Repos';
-import { Starred } from './components/Starred/Starred';
+import { UserRepos } from './components/UserRepos/UserRepos';
+import { UserStarred } from './components/UsersStarred/UserStarred';
 import { Spinner } from 'components/Elements/Spinner';
 
 import { useUser } from './api/getUser';
@@ -31,8 +31,8 @@ export const Profile = () => {
         <SelectBar selectedView={selectedView} setSelectedView={setSelectedView} />
       </UserInfo>
       {selectedView === 'events' && <UserEvents username={username} />}
-      {selectedView === 'repos' && <Repos username={username} />}
-      {selectedView === 'starred' && <Starred username={username} />}
+      {selectedView === 'repos' && <UserRepos username={username} />}
+      {selectedView === 'starred' && <UserStarred username={username} />}
     </>
   );
 };

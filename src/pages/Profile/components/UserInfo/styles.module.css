@@ -1,4 +1,4 @@
-.banner {
+.banner_background {
   width: 100%;
   height: 200px;
   background-color: var(--primary);
@@ -6,7 +6,7 @@
   margin-bottom: 40px;
   object-fit: cover;
 }
-.profilePic {
+.banner__profile {
   height: 150px;
   border-radius: 50%;
   position: absolute;
@@ -15,38 +15,21 @@
   background-color: var(--white);
   padding: 5px;
 }
-.relative {
-  position: relative;
-}
-.userDetailsCont {
+
+.cont {
   padding: 10px 25px 0 25px;
   border-bottom: solid 1px var(--exlightgray);
 }
-.userDetailsCont > h2 {
-  margin-bottom: 0;
-}
-.flexRow {
+.cont__details {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   align-items: center;
 }
-.userDetailsCont > p,
-.flexRow > p,
-.flexRow > a {
+.details__text {
   margin: 10px 0;
   margin-right: 15px;
 }
-.flex {
-  display: flex;
-}
-.flex > svg {
+.details__svg {
   margin-right: 3px;
-  fill: var(--gray);
-}
-.muted {
-  color: var(--gray);
-}
-.primary {
-  color: var(--primary);
 }

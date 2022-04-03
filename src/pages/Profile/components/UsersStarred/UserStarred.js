@@ -9,13 +9,13 @@ import { useStarred } from 'pages/Profile/api/getStarred';
 
 import styles from './styles.module.css';
 
-export const Starred = ({ username }) => {
+export const UserStarred = ({ username }) => {
   const { isLoading, isError, data, error } = useStarred(username);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
+
   if (isError) return <p>{error.message}</p>;
+
   return (
     <>
       {data.map((repo, index) => {
