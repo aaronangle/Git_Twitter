@@ -4,7 +4,7 @@ A Twitter-ish clone for GitHub data &amp; users built [me](https://aaronangle.gi
 
 View the site [here](https://aaronangle.github.io/twitter_clone/)
 
-# Project Structure
+## Project Structure
 
 Most of the code lives in the `src` folder and looks like this:
 
@@ -25,7 +25,7 @@ src
 |
 +-- lib               # libraries that wrapped in custom functionality and exported
 |
-+-- pages             # every page of the application (Some people architect React app by features instead of pages. For this project I thought pages made more sense to go with)
++-- pages             # every page of the application (Some people architect React apps by features instead of pages. For this project I thought pages made more sense to go with)
 |
 +-- routes            # routes configuration
 |
@@ -54,6 +54,10 @@ For this project I used CSS modules to scope the CSS to each component. I refrai
 
 `src/assets/globalStyles.css` contains unscoped CSS that can be used in any component. Aside from that every component or page contains a `styles.module.css` file as needed.
 
-# Project Challenges
+## Project Challenges
 
 One of the biggest challenges I ran into was the rate limit on the GitHub API. GitHub only allows a few amount of API calls every minute. In order to mitigate this problem I implemented `react-query` and cached the data as much as possible.
+
+## Next Steps
+
+I plan on creating Git_Tweeter with React Native and publishing it to the Google Play Store.
