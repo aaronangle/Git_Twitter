@@ -17,6 +17,8 @@ export const Home = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useEvents(pageCount);
 
+  console.log(data);
+
   const onIntersect = useCallback(() => {
     fetchNextPage();
     setPageCount((c) => c + 1);

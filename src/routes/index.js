@@ -26,7 +26,7 @@ export const AppRoutes = () => {
         { path: '/home', element: <Home /> },
         { path: '/topics', element: <Topics /> },
         { path: '/profile/:username', element: <Profile /> },
-        { path: '/Settings', element: <Settings /> },
+        { path: '/settings', element: <Settings /> },
       ],
     },
   ]);
