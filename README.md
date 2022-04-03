@@ -34,7 +34,7 @@ src
 
 Most of the code lives inside the `pages` folder.
 
-Here's a structure example of a page
+Here's a structural example of a page
 
 ```sh
 src/pages/Home
