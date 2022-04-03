@@ -2,7 +2,7 @@
 
 A Twitter-ish clone for GitHub data &amp; users built [me](https://aaronangle.github.io/Portfolio/) with React, React Query, and CSS modules, using GitHub's API.
 
-View the site [here](https://aaronangle.github.io/twitter_clone/)
+View the site here: [https://aaronangle.github.io/twitter_clone/](https://aaronangle.github.io/twitter_clone/)
 
 ## Project Structure
 
