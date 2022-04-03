@@ -1,6 +1,6 @@
 import { AppRoutes } from './routes';
 import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { storage } from 'utils';
 import { queryClient } from 'lib/react-query';
@@ -29,9 +29,9 @@ function App() {
     <div className="App">
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
-          <Router>
+          <HashRouter>
             <AppRoutes />
-          </Router>
+          </HashRouter>
         </QueryClientProvider>
       </ErrorBoundary>
     </div>
