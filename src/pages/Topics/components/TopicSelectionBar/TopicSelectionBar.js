@@ -32,9 +32,10 @@ export const TopicSelectionBar = ({ selectedTopics, setSelectedTopics }) => {
   const scrollRef = useRef(null);
 
   function handleClick(topic) {
-    if (selectedTopics.includes(topic) && selectedTopics.length > 1) {
+    const isInArray = selectedTopics.includes(topic);
+    if (isInArray && selectedTopics.length > 1) {
       setSelectedTopics(selectedTopics.filter((el) => el !== topic));
-    } else if (selectedTopics.length <= 4) {
+    } else if (!isInArray && selectedTopics.length <= 4) {
       setSelectedTopics([...selectedTopics, topic]);
     }
   }
