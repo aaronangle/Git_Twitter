@@ -1,10 +1,7 @@
+import { lazy } from 'react';
 import { useRoutes, Outlet } from 'react-router-dom';
 
 import { Landing } from '../pages/Landing';
-import { Home } from '../pages/Home';
-import { Topics } from '../pages/Topics';
-import { Profile } from '../pages/Profile';
-import { Settings } from '../pages/Settings';
 
 import { MainLayout } from '../components/Layouts/Layout';
 
@@ -23,10 +20,10 @@ export const AppRoutes = () => {
       path: '/',
       element: <App />,
       children: [
-        { path: '/home', element: <Home /> },
-        { path: '/topics', element: <Topics /> },
-        { path: '/profile/:username', element: <Profile /> },
-        { path: '/settings', element: <Settings /> },
+        { path: '/home', element: lazy(() => import('../pages/Home')) },
+        { path: '/topics', element: lazy(() => import('../pages/Topics')) },
+        { path: '/profile/:username', element: lazy(() => import('../pages/Profile')) },
+        { path: '/settings', element: lazy(() => import('../pages/Settings')) },
       ],
     },
   ]);
