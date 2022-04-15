@@ -2,6 +2,8 @@
 
 A Twitter-ish clone for GitHub data &amp; users built [me](https://aaronangle.github.io/Portfolio/) with React, React Query, and CSS modules, using GitHub's API.
 
+The React Native code can be viewed [here](https://github.com/aaronangle/Git_Tweeter-React-Native).
+
 View the site here: [https://aaronangle.github.io/Git_Twitter/](https://aaronangle.github.io/Git_Twitter/)
 
 ## Project Structure
@@ -62,4 +64,4 @@ One of the biggest challenges I ran into was the rate limit on the GitHub API. G
 
 ## Next Steps
 
-I plan on creating Git_Tweeter with React Native and publishing it to the Google Play Store.
+~~I plan on creating Git_Tweeter with React Native and publishing it to the Google Play Store~~. Git_Tweeter is now available on the [Google Play Store](https://play.google.com/store/apps/details?id=com.ang.gittweeter).
