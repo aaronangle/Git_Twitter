@@ -1,6 +1,6 @@
 # Git_Tweeter
 
-A Twitter-ish clone for GitHub data &amp; users built [me](https://aaronangle.github.io/Portfolio/) with React, React Query, and CSS modules, using GitHub's API.
+A Twitter-ish clone for GitHub data &amp; users built by [me](https://aaronangle.github.io/Portfolio/) with React, React Query, and CSS modules, using GitHub's API.
 
 The React Native code can be viewed [here](https://github.com/aaronangle/Git_Tweeter-React-Native).
 
