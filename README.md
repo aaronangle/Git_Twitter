@@ -64,4 +64,6 @@ One of the biggest challenges I ran into was the rate limit on the GitHub API. G
 
 ## Next Steps
 
-~~I plan on creating Git_Tweeter with React Native and publishing it to the Google Play Store~~. Git_Tweeter is now available on the [Google Play Store](https://play.google.com/store/apps/details?id=com.ang.gittweeter).
+✅~~I plan on creating Git_Tweeter with React Native and publishing it to the Google Play Store~~.
+
+Git_Tweeter is now available on the [Google Play Store](https://play.google.com/store/apps/details?id=com.ang.gittweeter).
